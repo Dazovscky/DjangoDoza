@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Загрузка изображений</title>
+    <title>Выбор буквы</title>
 </head>
 <body>
-    <h1>Загрузка изображений</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Загрузить</button>
-    </form>
+    <ul>
+        {% for letter in letters %}
+            <a href="{% url 'process_letter' letter=letter %}">{{ letter }}</a>
+        {% endfor %}
+        {% for list in cases %}
+            <a href="">{{ list }}</a>
+        {% endfor %}
 
+    </ul>
 </body>
 </html>
