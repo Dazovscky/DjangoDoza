@@ -16,6 +16,14 @@ class Case(models.Model):
 
 class CaseFile(models.Model):
     case = models.ForeignKey(Case, on_delete=models.CASCADE) # When a Case is deleted, upload models are also deleted
-    file = models.FileField(upload_to=case_upload_location, null = True, blank = True)
+    file = models.ImageField(upload_to=case_upload_location, null = True, blank = True)
+
+    def __str__(self):
+        return "{}  {}".format( self.case, self.file)
+
+
+
+
+
 
 

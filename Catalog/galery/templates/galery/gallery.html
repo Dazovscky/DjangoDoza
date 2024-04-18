@@ -1,19 +1,22 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Выбор буквы</title>
 </head>
 <body>
+<div>
     <ul>
         {% for letter in letters %}
             <a href="{% url 'process_letter' letter=letter %}">{{ letter }}</a>
         {% endfor %}
-        {% for list in cases %}
-            <a href="">{{ list }}</a>
+        {% for list in list_author %}
+            <a href="{% url 'display_images' list=list %}">{{ list }}</a>
         {% endfor %}
-
     </ul>
+    </div>
 </body>
 </html>

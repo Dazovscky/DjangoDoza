@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'slider.css' %}">
+</head>
+<body>
+
+  <ul>
+        {% for list in list_author %}
+            <a href="{% url 'display_images' list=list %}">{{ list }}</a>
+        {% endfor %}
+  </ul>
+
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея изображений</title>
+    <style>
+        .slider {
+            width: 800px;
+            height: 400px;
+            overflow: hidden;
+            margin: auto;
+            position: relative;
+            background-color: rgba(255, 0, 255, 0.5);
+        }
+        .slides {
+            display: flex;
+            width: 400%;
+        }
+        .slide {
+            width: 100%;
+            transition: all 0.5s ease;
+        }
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 2;
+        }
+        #btn-prev {
+            left: 10px;
+        }
+        #btn-next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slider">
+        <div class="slides">
+            {% for img in images %}
+            <div class="slide"><img src="{{ img.file.url }}" alt="Image 1"></div>
+            {% endfor %}
+        </div>
+    <button id="btn-prev" class="slider-btn">&lt;</button>
+        <button id="btn-next" class="slider-btn">&gt;</button>
+</div>
+
+
+
+<script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('btn-next').addEventListener('click', () => {
+            slideIndex = (slideIndex + 1) % totalSlides;
+            updateSlidePosition();
+        });
+
+        document.getElementById('btn-prev').addEventListener('click', () => {
+            slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+            updateSlidePosition();
+        });
+
+        function updateSlidePosition() {
+            for (let slide of slides) {
+                slide.style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
+            }
+        }
+    </script>
+
+</body>
